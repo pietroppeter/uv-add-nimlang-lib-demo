@@ -63,11 +63,13 @@ To reproduce from scratch, create the four files above (for example after
 
 ```sh
 uv run python -m timeit -s "from nimlang_lib_demo.fast import fib" "fib(30)"   # builds fast.so in place
-uv build                                          # sdist + wheel for this machine
+uv build --wheel                                  # wheel for this machine
 NIMLANG_TARGET=aarch64-macos uv build --wheel     # cross-build for another platform
 ```
 
 The wheel is tagged `py3-none-<platform>`, so one wheel per platform covers every CPython 3.
+Releases publish only wheels, no sdist, so installing never compiles anything. The flip side
+is that platforms without a wheel (musl Linux, Windows on ARM) can't install it.
 [CI](.github/workflows/ci.yml) builds the wheels for Linux, macOS and Windows on a single Linux
 machine. It then installs each one on its own OS, with no nimlang or ziglang, and runs the
 [test](tests/test_demo.py).
