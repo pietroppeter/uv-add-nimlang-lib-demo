@@ -1,0 +1,34 @@
+[project]
+name = "nimlang-lib-demo"
+version = "0.1.0"
+description = "Demo: a Python package whose core is compiled Nim, built with nimlang. Users need no Nim, zig or C compiler."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Repository = "https://github.com/pietroppeter/uv-add-nimlang-lib-demo"
+nimlang = "https://github.com/pietroppeter/uv-add-nimlang"
+
+# nimlang is needed only to build wheels: it brings Nim and zig cc into the build environment.
+[build-system]
+requires = ["hatchling", "nimlang"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.nimlang]
+extensions = ["src/nimlang_lib_demo/nimcore.nim"]  # importable as nimlang_lib_demo.nimcore
+binaries = ["src/nimlang_lib_demo/nimdemo.nim"]  # installed as the `nimdemo` command
+
+[tool.nimlang]
+dependencies = ["nimpy"]
+
+[tool.uv]
+# Rebuild the editable install (and so the Nim extension) when Nim sources change.
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/**/*.nim" }]
+
+[dependency-groups]
+dev = ["nimlang", "pytest"]
