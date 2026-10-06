@@ -11,7 +11,7 @@ dependencies = []
 Repository = "https://github.com/pietroppeter/uv-add-nimlang-lib-demo"
 
 [build-system]
-requires = ["hatchling", "nimlang"]
+requires = ["hatchling", "nimlang>=0.0.2"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.hooks.nimlang]

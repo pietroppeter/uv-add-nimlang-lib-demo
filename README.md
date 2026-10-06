@@ -18,6 +18,7 @@ pyproject.toml
 src/nimlang_lib_demo/__init__.py   # empty
 src/nimlang_lib_demo/slow.py       # fib in Python
 src/nimlang_lib_demo/fast.nim      # fib in Nim, importable as nimlang_lib_demo.fast
+nimlang.lock                       # pinned commit of nimpy, written by nimlang on the first build
 ```
 
 `slow.py`:
@@ -46,7 +47,7 @@ requires-python = ">=3.9"
 dependencies = []
 
 [build-system]
-requires = ["hatchling", "nimlang"]
+requires = ["hatchling", "nimlang>=0.0.2"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.hooks.nimlang]
@@ -58,7 +59,7 @@ dependencies = ["nimpy"]
 
 ## Build it yourself
 
-To reproduce from scratch, create the four files above (for example after
+To reproduce from scratch, create the four source files above (for example after
 `uv init --lib nimlang-lib-demo`), then:
 
 ```sh
