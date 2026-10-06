@@ -63,7 +63,6 @@ jobs:
           python -c "import importlib.util as u; assert not u.find_spec('nimlang') and not u.find_spec('ziglang')"
       - name: Tests
         run: python -m pytest -v -p no:cacheprovider tests
-        working-directory: tests
       - name: CLI
         run: nimdemo 30
 
@@ -82,7 +81,7 @@ jobs:
         run: |
           uv venv sdist-env
           uv pip install --python sdist-env --no-binary nimlang-lib-demo dist/*.tar.gz pytest
-          cd tests && ../sdist-env/bin/python -m pytest -v -p no:cacheprovider .
+          sdist-env/bin/python -m pytest -v -p no:cacheprovider tests
 
   publish:
     # Push a vX.Y.Z tag to release to PyPI (needs a PyPI trusted publisher for this repo,
