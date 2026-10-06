@@ -1,0 +1,21 @@
+[project]
+name = "nimlang-lib-demo"
+version = "0.1.0"
+description = "Minimal Python package shipping a function compiled from Nim, built with nimlang."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/pietroppeter/uv-add-nimlang-lib-demo"
+
+[build-system]
+requires = ["hatchling", "nimlang>=0.0.2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.nimlang]
+extensions = ["src/nimlang_lib_demo/fast.nim"]
+
+[tool.nimlang]
+dependencies = ["nimpy"]
