@@ -63,8 +63,10 @@ jobs:
           python -c "import importlib.util as u; assert not u.find_spec('nimlang') and not u.find_spec('ziglang')"
       - name: Tests
         run: python -m pytest -v -p no:cacheprovider tests
-      - name: CLI
-        run: nimdemo 30
+      - name: timeit
+        run: |
+          python -m timeit -s "from nimlang_lib_demo.slow import fib" "fib(25)"
+          python -m timeit -s "from nimlang_lib_demo.fast import fib" "fib(25)"
 
   # Installing from the sdist compiles the Nim code: this is the path that does need nimlang.
   sdist:
