@@ -1,8 +1,9 @@
 # uv-add-nimlang-lib-demo
 
 A minimal Python package that ships a function compiled from Nim, built with
-[nimlang](https://github.com/pietroppeter/uv-add-nimlang). People who install it get a
-prebuilt wheel: no Nim, no zig, no C compiler, and neither nimlang nor ziglang gets installed.
+[nimlang-pypi](https://github.com/pietroppeter/uv-add-nimlang) (PyPI package `nimlang`). People who install
+it get a prebuilt wheel: no Nim, no zig, no C compiler, and neither nimlang nor ziglang gets
+installed.
 
 > AI disclosure: this project is mostly vibed. Currently [level 7](https://www.visidata.org/blog/2026/ai/#level-6%3A-bots-coded%2C-human-understands-mostly) on visidata AI scale: Human specced, bots coded.
 
